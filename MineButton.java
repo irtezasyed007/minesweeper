@@ -29,7 +29,7 @@ public class MineButton {
 	}
 	
 	public void setMineIcon(){
-		Icon mine = new ImageIcon(getClass().getResource("unnamed1.png"));
+		Icon mine = new ImageIcon(getClass().getResource("mineIcon.png"));
 		button.setIcon(mine);
 	}
 	
