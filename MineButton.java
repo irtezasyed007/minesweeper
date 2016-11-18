@@ -1,5 +1,7 @@
 package edu.cuny.csi.csc330.project;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class MineButton {
@@ -24,6 +26,11 @@ public class MineButton {
 	public void toggleFlag(){
 		isFlagged = isFlagged == true ? false : true;
 		button.setText("F");
+	}
+	
+	public void setMineIcon(){
+		Icon mine = new ImageIcon(getClass().getResource("unnamed1.png"));
+		button.setIcon(mine);
 	}
 	
 	public void makeMine(){
