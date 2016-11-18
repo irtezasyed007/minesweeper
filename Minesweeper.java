@@ -2,6 +2,8 @@ package edu.cuny.csi.csc330.project;
 
 import java.awt.EventQueue;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class Minesweeper {
@@ -62,5 +64,6 @@ public class Minesweeper {
 		}
 		
 		mineField[0][0].toggleFlag();
+		mineField[5][5].setMineIcon();
 	}
 }

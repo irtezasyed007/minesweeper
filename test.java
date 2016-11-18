@@ -1,3 +1,5 @@
+package edu.cuny.csi.csc330.project;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
