@@ -1,4 +1,4 @@
-package edu.cuny.csi.csc330.project;
+package edu.cuny.csi.csc330.minesweeper;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
