@@ -1,4 +1,4 @@
-package edu.cuny.csi.csc330.project;
+package edu.cuny.csi.csc330.minesweeper;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -18,6 +18,7 @@ public class Options extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtLength;
 	private JTextField txtWidth;
+	private JTextField mines;
 
 	/**
 	 * Launch the application.
@@ -54,6 +55,11 @@ public class Options extends JDialog {
 			contentPanel.add(lblWidth);
 		}
 		{
+			JLabel numMines = new JLabel("Mines");
+			numMines.setBounds(16, 73, 61, 16);
+			contentPanel.add(numMines);
+		}
+		{
 			txtLength = new JTextField();
 			txtLength.setBounds(79, 11, 134, 28);
 			contentPanel.add(txtLength);
@@ -64,6 +70,11 @@ public class Options extends JDialog {
 			txtWidth.setBounds(79, 39, 134, 28);
 			contentPanel.add(txtWidth);
 			txtWidth.setColumns(10);
+		}
+		{
+			mines = new JTextField();
+			mines.setBounds(79, 67, 134, 28);
+			contentPanel.add(mines);
 		}
 		{
 			JPanel buttonPane = new JPanel();
