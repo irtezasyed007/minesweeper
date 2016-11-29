@@ -25,19 +25,29 @@ public class Minesweeper{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			MineButton mButton = (MineButton)e.getSource();
-			if(SwingUtilities.isRightMouseButton(e) && hasClicked){
+			if(SwingUtilities.isRightMouseButton(e)){
+				if(hasClicked){
 				mButton.toggleFlag();
-			}
-			if(!hasClicked){
-				hasClicked = true;
-				generateMines(mButton);
-				cascade(mButton);
-			}
-			else if(mButton.isMine()){
-				lost();
+				}
 			}
 			else{
-				
+				if(!hasClicked){
+					hasClicked = true;
+					generateMines(mButton);
+					cascade(mButton);
+					mButton.setText(mButton.getAdjMines() + "");
+				}
+				else if(mButton.isMine()){
+					lost();
+				}
+				else{
+					if(mButton.getAdjMines() == 0){
+						cascade(mButton);
+					}
+					else{
+						mButton.setText(mButton.getAdjMines() + "");
+					}
+				}
 			}
 		}
 		@Override
@@ -123,24 +133,30 @@ public class Minesweeper{
 				mineField[i][j].addMouseListener(new ButtonClickListener());
 			}
 		}
-		
-		mineField[0][0].toggleFlag();
-		mineField[5][5].setMineIcon();
 	}
 	
 
 	public void generateMines(MineButton mButton){
 		int x = mButton.getX(), y = mButton.getY(), mines = 0;
-		int startPos[] = {x, y};
 		ArrayList<int[]> list = new ArrayList<int[]>();
-		list.add(startPos);
+		for(int i = -1; i < 2; ++i){
+			for(int j = -1; j < 2; ++j){
+				int arr[] = new int[2];
+				arr[0] = x + i;
+				arr[1] = y + j;
+				list.add(arr);
+			}
+		}
 		Randomizer randomizer = new Randomizer();
 		
 		while(mines < 10){
 			int i = randomizer.generateInt(0, 9);
 			int j = randomizer.generateInt(0, 9);
-			int arr[] = {i, j};
-			if(!list.contains(arr) && x != i + 1 && x != i - 1 && y != j + 1 && y != j - 1 ){
+			int arr[] = new int[2];
+			arr[0] = i;
+			arr[1] = j;
+			if(!list.contains(arr)){
+				list.add(arr);
 				mineField[i][j].setMine();
 				for(int k = -1; k < 2; ++k){
 					for(int l = -1; l < 2; ++l){
