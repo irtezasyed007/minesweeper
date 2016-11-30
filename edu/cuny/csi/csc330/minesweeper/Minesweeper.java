@@ -1,18 +1,5 @@
 package edu.cuny.csi.csc330.minesweeper;
 
-<<<<<<< HEAD
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.event.*;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-
-import java.util.*;
-import edu.cuny.csi.csc330.lib.*;
-=======
 import java.awt.*;
 import java.awt.event.*;
 
@@ -21,7 +8,6 @@ import javax.swing.Timer;
 
 import java.util.*;
 //import edu.cuny.csi.csc330.lib.*;
->>>>>>> 99f3dbb7274f686d7809baad64ba6a8505ac4da7
 
 public class Minesweeper{
 	// Protected Constants
@@ -31,46 +17,16 @@ public class Minesweeper{
 	private JFrame frame;
 	private MineButton[][] mineField;
 	private boolean hasClicked;
-<<<<<<< HEAD
-=======
-	private JLabel lblTime;
-	private JLabel lblMines;
+	private JLabel txtTimer;
 	private Timer timer = new Timer(1000, getAction());
-	private Integer time=0;
 	private JMenuItem newGame;
 	private JMenuItem quitGame;
 	private JMenuItem options;
->>>>>>> 99f3dbb7274f686d7809baad64ba6a8505ac4da7
 	
 	private class ButtonClickListener implements MouseListener{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			MineButton mButton = (MineButton)e.getSource();
-<<<<<<< HEAD
-			if(SwingUtilities.isRightMouseButton(e)){
-				if(hasClicked){
-				mButton.toggleFlag();
-				}
-			}
-			else{
-				if(!hasClicked){
-					hasClicked = true;
-					generateMines(mButton);
-					cascade(mButton);
-					mButton.setText(mButton.getAdjMines() + "");
-				}
-				else if(mButton.isMine()){
-					lost();
-				}
-				else{
-					if(mButton.getAdjMines() == 0){
-						cascade(mButton);
-					}
-					else{
-						mButton.setText(mButton.getAdjMines() + "");
-					}
-				}
-=======
 			if(SwingUtilities.isRightMouseButton(e) && hasClicked){
 				mButton.toggleFlag();
 			}
@@ -84,7 +40,6 @@ public class Minesweeper{
 			}
 			else{
 				
->>>>>>> 99f3dbb7274f686d7809baad64ba6a8505ac4da7
 			}
 		}
 		@Override
@@ -105,23 +60,16 @@ public class Minesweeper{
 		}
 	}
 	
-<<<<<<< HEAD
-=======
 	private ActionListener getAction(){
 		ActionListener action = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	time++;
-            	if (time<1000){
-            		lblTime.setText(time.toString());
-            	}
             }
         };
         return action;
 	}
 	
 	
->>>>>>> 99f3dbb7274f686d7809baad64ba6a8505ac4da7
 	private class ButtonStateChanged implements ItemListener{
 		public void itemStateChanged(ItemEvent ev){
 			MineButton mButton = (MineButton)ev.getSource();
@@ -170,28 +118,10 @@ public class Minesweeper{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-<<<<<<< HEAD
-		hasClicked = false;
-		createField("10","10");
-	}
-=======
 		//time label
-		JLabel timeLabel = new JLabel ("Time:");
-		timeLabel.setBounds(6,0,50,30);
-		timeLabel.setVisible(true);
+		JLabel timeLabel = new JLabel ("Time");
+		timeLabel.setHorizontalAlignment(JLabel.CENTER);
 		frame.add(timeLabel);
-		
-		//timer
-		lblTime = new JLabel("0");
-		lblTime.setBounds(45,0,50,30);
-		lblTime.setForeground(Color.red);
-		lblTime.setFont(new Font("DialogInput", Font.BOLD, 18));
-		frame.add( lblTime );
-		
-		//mines label
-		lblMines = new JLabel("Mines:");
-		lblMines.setBounds(120, 0, 120, 30);
-		frame.add(lblMines);
 		
 		hasClicked = false;
 		createField("10","10");
@@ -208,14 +138,13 @@ public class Minesweeper{
 				else if (x == options){
 					Options options=new Options();
 					options.setVisible(true);
-					//width=Integer.parseInt(options.txtWidth.getText());
 				}
 			}
 		};
 		
 		JMenuBar menuBar = new JMenuBar();
 
-		JMenu gameMenu = new JMenu("Menu");
+		JMenu gameMenu = new JMenu("File");
 			newGame = new JMenuItem("New Game");
 			newGame.addActionListener(click);
 			quitGame = new JMenuItem("Quit");
@@ -230,7 +159,6 @@ public class Minesweeper{
 
 		return menuBar;
 	}
->>>>>>> 99f3dbb7274f686d7809baad64ba6a8505ac4da7
 
 	public void createField(String width, String length){
 		mineField=new MineButton[Integer.parseInt(width)][Integer.parseInt(length)];
@@ -240,11 +168,7 @@ public class Minesweeper{
 		for (int i=0;i<Integer.parseInt(width);i++){
 			for(int j=0;j<Integer.parseInt(length);j++){
 				mineField[i][j]=new MineButton();
-<<<<<<< HEAD
-				mineField[i][j].setBounds(i*20+6,j*20+6);
-=======
 				mineField[i][j].setBounds(i*20+6,j*20+35);
->>>>>>> 99f3dbb7274f686d7809baad64ba6a8505ac4da7
 				mineField[i][j].setCoordinates(i, j);
 				frame.getContentPane().add(mineField[i][j]);
 				mineField[i][j].addItemListener(new ButtonStateChanged());
@@ -256,66 +180,6 @@ public class Minesweeper{
 
 	public void generateMines(MineButton mButton){
 		int x = mButton.getX(), y = mButton.getY(), mines = 0;
-<<<<<<< HEAD
-		ArrayList<int[]> list = new ArrayList<int[]>();
-		for(int i = -1; i < 2; ++i){
-			for(int j = -1; j < 2; ++j){
-				int arr[] = new int[2];
-				arr[0] = x + i;
-				arr[1] = y + j;
-				list.add(arr);
-			}
-		}
-		Randomizer randomizer = new Randomizer();
-		
-		while(mines < 10){
-			int i = randomizer.generateInt(0, 9);
-			int j = randomizer.generateInt(0, 9);
-			int arr[] = new int[2];
-			arr[0] = i;
-			arr[1] = j;
-			if(!list.contains(arr)){
-				list.add(arr);
-				mineField[i][j].setMine();
-				for(int k = -1; k < 2; ++k){
-					for(int l = -1; l < 2; ++l){
-						if(i + k >= 0 && i + k <= 9 && j + l >= 0 && j + l <= 9){
-							mineField[i + k][j + l].incAdjMines();
-						}
-					}
-				}
-				++mines;
-			}
-		}
-	}
-	
-	private void cascade(MineButton mButton){
-		boolean triggered = false;
-		if(mButton.getAdjMines() == 0){
-			mButton.setSelected(true);
-			triggered = true;
-		}
-		int x = mButton.getX(), y = mButton.getY();
-		if(triggered){
-			for(int i = -1; i < 2; ++i){
-				for(int j = -1; j < 2; ++j){
-					if(i + x >= 0 && i + x <= 9 && j + y >= 0 && j + y <= 9){
-						cascade(mineField[i][j]);
-					}
-				}
-			}
-		}
-	}
-	
-	private void lost(){
-		for(int i = 0; i < 10; ++i){
-			for(int j = 0; j < 10; ++j){
-				if(mineField[i][j].isMine()){
-					mineField[i][j].setMineIcon();
-				}
-			}
-		}
-=======
 		int startPos[] = {x, y};
 		ArrayList<int[]> list = new ArrayList<int[]>();
 		list.add(startPos);
@@ -338,9 +202,6 @@ public class Minesweeper{
 			}
 		}
 		timer.start();
-		
-		
->>>>>>> 99f3dbb7274f686d7809baad64ba6a8505ac4da7
 	}
 	
 	private void cascade(MineButton mButton){

@@ -1,4 +1,4 @@
-package edu.cuny.csi.csc330.project;
+package edu.cuny.csi.csc330.minesweeper;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -16,8 +16,9 @@ import java.awt.event.ActionEvent;
 public class Options extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtLength;
-	private JTextField txtWidth;
+	protected JTextField txtLength;
+	protected JTextField txtWidth;
+	private JTextField mines;
 
 	/**
 	 * Launch the application.
@@ -44,7 +45,7 @@ public class Options extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblLength = new JLabel("Length");
+			JLabel lblLength = new JLabel("Height");
 			lblLength.setBounds(16, 17, 61, 16);
 			contentPanel.add(lblLength);
 		}
@@ -54,16 +55,24 @@ public class Options extends JDialog {
 			contentPanel.add(lblWidth);
 		}
 		{
+			JLabel numMines = new JLabel("Mines");
+			numMines.setBounds(16, 73, 61, 16);
+			contentPanel.add(numMines);
+		}
+		{
 			txtLength = new JTextField();
 			txtLength.setBounds(79, 11, 134, 28);
 			contentPanel.add(txtLength);
-			txtLength.setColumns(10);
 		}
 		{
 			txtWidth = new JTextField();
 			txtWidth.setBounds(79, 39, 134, 28);
 			contentPanel.add(txtWidth);
-			txtWidth.setColumns(10);
+		}
+		{
+			mines = new JTextField();
+			mines.setBounds(79, 67, 134, 28);
+			contentPanel.add(mines);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -79,6 +88,7 @@ public class Options extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");

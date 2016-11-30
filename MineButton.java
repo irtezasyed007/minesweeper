@@ -86,4 +86,8 @@ public class MineButton extends JToggleButton {
 		this.setBounds(x, y, 20, 20);
 	}
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 99f3dbb7274f686d7809baad64ba6a8505ac4da7
