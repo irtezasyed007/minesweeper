@@ -1,4 +1,4 @@
-package minesweeper;
+package minesweeper-master;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
