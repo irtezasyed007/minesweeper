@@ -1,4 +1,4 @@
-package minesweeper-master;
+package minesweeper;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;

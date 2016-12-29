@@ -1,5 +1,5 @@
 // Given to us previously to use by our Professor
-package minesweeper-master;
+package minesweeper;
 
 import java.util.*;
 import java.math.*;
